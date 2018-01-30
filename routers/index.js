@@ -28,7 +28,7 @@ router.get('/users/:uid',function(req,res){
 router.get('/loginOut',function(req,res){
 	req.session.user = null;
 	res.redirect('/');
-})
+})	
 
 router.use('/sign',require('./sign.js'));
 router.use('/login',require('./login.js'));

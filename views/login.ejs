@@ -15,14 +15,14 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<form action="/login/check" method="post" class="loginuser">
+				<form action="/login/check" method="post" class="loginuser" id='app'>
 					<div class="form-group has-success">
 						<label for="loginname">用户名</label>
-						<input type="text" class="form-control loginname" id="loginname" placeholder="用户名" name="loginname">
+						<input type="text" class="form-control loginname" id="loginname" placeholder="用户名" name="loginname" @keyup.enter='submit'>
 					</div>	
 					<div class="form-group has-success">
 						<label for="loginpwd">密码</label>
-						<input type="password" class="form-control loginpwd" id="loginpwd" placeholder="密码" name="loginpwd">
+						<input type="password" class="form-control loginpwd" id="loginpwd" placeholder="密码" name="loginpwd" @keyup.enter='submit'>
 					</div>		
 					<p class="text-danger checkid"></p>
 					<input type="button" class="submit btn btn-success btn-block" value="登录">														
@@ -30,6 +30,7 @@
 			</div>			
 		</div>
 	</div>
+	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/app.js"></script>
