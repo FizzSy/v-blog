@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文章详情</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<%- include('header') %>
+	<div class="container text-center blog_title">
+		<h1><a href="/" class="text-success">v-blog</a></h1>
+		<p>my first blog</p>
+		<div class="row comment_box">
+			<div class="col-md-3 col-sm-2">
+				<div class="head text-right hidden-xs"><a href="/users/<%= personal.author._id %>"><img src='/imgs/<%= personal.author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= personal.author.username %><%= personal.author.sex %>" data-content="<%= personal.author.resume %>"></a>
+				</div>
+			</div>
+			<div class="col-md-7 col-sm-9">	
+				<div class="comment">
+					<div class="visible-xs text-left"> 
+						<div class="head inline">
+							<a href="/users/<%= personal.author._id %>"><img src='/imgs/<%= personal.author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= personal.author.username %><%= personal.author.sex %>" data-content="<%= personal.author.resume %>"></a>
+						</div>
+						<h3 class="inline ml15"><a href="/personal/<%= personal._id %>"><%= personal.title %></a></h3>									
+					</div>
+					<h3 class="text-left hidden-xs"><a href="/personal/<%= personal._id %>"><%= personal.title %></a></h3>
+					<p class="text-left"><%= personal.context %></p>
+					<div class="info_box clearfix">
+						<span class="time"><%= personal.time.getFullYear()+'-'+personal.time.getMonth()+1+'-'+personal.time.getDate()+' '+personal.time.getHours()+':'+personal.time.getMinutes()+':'+personal.time.getSeconds() %></span>
+						<span class="info">
+							<i class="brose">浏览<span>(<%= personal.browse %>)</span></i>
+							<i class="message" value='<%= personal.message %>'>留言<span>(<%= personal.message %>)</span></i>
+							<% if(locals.user._id == personal.author._id){ %>
+							<div style="display: inline-block;position: relative;">
+								  <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block;">
+								  	<span class="caret"></span>
+								  </div>
+								  <ul class="dropdown-menu">
+								    <li><a href="/publish/edit/<%= personal._id %>">编辑</a></li>
+								    <li><a href="/publish/delmsg/<%= personal._id %>">删除</a></li>
+								  </ul>
+								</div>
+							<% } %>							
+						</span>
+					</div>
+				</div>
+				<div class="note mt15">
+					<h4 class="text-left">留言</h4>				
+					<% for(var i in msg){ %>
+						<% var hours =msg[i].time.getHours()<10?'0'+msg[i].time.getHours():msg[i].time.getHours(); %>
+						<% var minutes =msg[i].time.getMinutes()<10?'0'+msg[i].time.getMinutes():msg[i].time.getMinutes(); %>
+						<% var seconds =msg[i].time.getSeconds()<10?'0'+msg[i].time.getSeconds():msg[i].time.getSeconds(); %>	
+						<div class="user clearfix">
+							<a href='/users/<%= msg[i].author._id %>'><img src="/imgs/<%= msg[i].author.headicon %>" alt="" class="pull-left block"></a>
+							<div class="userInfo">
+								<div class="text-left">
+									<h5><a href='/users/<%= msg[i].author._id %>'><%= msg[i].author.username %></a></h5>
+									<span class="time"><%= msg[i].time.getFullYear()+'-'+msg[i].time.getMonth()+1+'-'+msg[i].time.getDate()+' '+hours+':'+minutes+':'+seconds %></span>
+									<% if(locals.user._id == msg[i].author._id){ %>
+										<a href="javascript:;" data-id='<%= msg[i]._id %>'  class="del pull-right">删除</a>
+									<% } %>
+								</div>
+								<p class="text-left"><span class="user_comment"><%= msg[i].note %></span></p>
+							</div>
+						</div>
+					<% } %>	
+					<% if(locals.user){ %>
+						<form action="/publish/savenote" method="post" class="note_form text-left">
+							<input type="hidden" name="_id" value="<%= locals.user._id %>">
+							<input type="hidden" name="aid" value="<%= personal._id %>">
+							<div class="form-group has-success">
+								<textarea name="note" class="form-control" id="note"></textarea>
+								<p class="noteMsg text-danger"></p>
+							</div>
+							<input type="button" class="btn-success btn note_user" value='留言'>						
+						</form>		
+					<% } %>
+				</div>				
+			</div>
+		</div>
+	</div>
+
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/app.js"></script>
+</body>
+</html>

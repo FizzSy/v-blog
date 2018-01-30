@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>个人主页</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<%- include('header') %>
+	<div class="container text-center blog_title">
+		<h1><a href="/" class="text-success">v-blog</a></h1>
+		<p>my first blog</p>
+			<% for(var i in home) { %>
+				<% var hours =home[i].time.getHours()<10?'0'+home[i].time.getHours():home[i].time.getHours(); %>
+				<% var minutes =home[i].time.getMinutes()<10?'0'+home[i].time.getMinutes():home[i].time.getMinutes(); %>
+				<% var seconds =home[i].time.getSeconds()<10?'0'+home[i].time.getSeconds():home[i].time.getSeconds(); %>				
+			<div class="row comment_box">
+				<div class="col-md-3 col-sm-2">
+					<div class="head text-right hidden-xs"><a href="/users/<%= home[i].author._id %>"><img src='/imgs/<%= home[i].author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= home[i].author.username %><%= home[i].author.sex %>" data-content="<%= home[i].author.resume %>"></a>
+					</div>
+				</div>
+				<div class="col-md-7 col-sm-9">	
+					<div class="comment">
+						<div class="visible-xs text-left"> 
+							<div class="head inline">
+								<a href="/users/<%= home[i].author._id %>"><img src='/imgs/<%= home[i].author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= home[i].author.username %><%= home[i].author.sex %>" data-content="<%= home[i].author.resume %>"></a>
+							</div>
+							<h3 class="inline ml15"><a href="/personal/<%= home[i]._id %>"><%= home[i].title %></a></h3>									
+						</div>
+						<h3 class="text-left hidden-xs"><a href="/personal/<%= home[i]._id %>"><%= home[i].title %></a></h3>
+						<p class="text-left"><%= home[i].context %></p>
+						<div class="info_box clearfix">
+							<span class="time"><%= home[i].time.getFullYear()+'-'+home[i].time.getMonth()+1+'-'+home[i].time.getDate()+' '+hours+':'+minutes+':'+seconds %></span>
+							<span class="info">
+								<i class="brose">浏览<span>(<%= home[i].browse %>)</span></i>
+								<i class="message">留言<span>(<%= home[i].message %>)</span></i>
+								<% if(locals.user._id == home[i].author._id){ %>
+									<div style="display: inline-block;position: relative;">
+									  <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block;">
+									  	<span class="caret"></span>
+									  </div>
+									  <ul class="dropdown-menu">
+									    <li><a href="/publish/edit/<%= home[i]._id %>">编辑</a></li>
+									    <li><a href="/publish/delmsg/<%= home[i]._id %>">删除</a></li>
+									  </ul>
+									</div>								
+								<% } %>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/app.js"></script>
+	<script>
+		$(function(){
+			$('.nav li').find('.home').addClass('on');
+		})
+	</script>
+</body>
+</html>

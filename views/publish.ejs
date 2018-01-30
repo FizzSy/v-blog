@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>发表文章</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<%- include('header') %>
+	<div class="container text-center blog_title">
+		<h1><a href="/" class="text-success">v-blog</a></h1>
+		<p>my first blog</p>
+	</div>
+	<div class="container comment_box">
+		<div class="row">
+			<div class="col-md-3 col-sm-2">
+				<div class="head text-right hidden-xs"><a href="/users/<%= locals.user._id %>"><img src='/imgs/<%= locals.user.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= locals.user.username %><%= locals.user.sex %>" data-content="<%= locals.user.resume %>"></a>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-8">	
+				<form action="/publish/save" method="post" class="m0">
+					<div class="visible-xs text-left"> 
+						<div class="head inline">
+							<a href="/users/<%= locals.user._id %>"><img src='/imgs/<%= locals.user.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= locals.user.username %><%= locals.user.sex %>" data-content="<%= locals.user.resume %>"></a>
+						</div>								
+					</div>		
+					<input type="hidden" name='_id' value='<%= locals.user._id %>'>			
+					<div class="form-group has-success mt-xs-5">
+						<label for="title">标题</label>
+						<input type="text" class="form-control" id="title" placeholder="用户名" name="title">
+					</div>		
+					<div class="form-group has-success">
+						<label for="resume">内容</label>
+						<textarea name="context" id="resume" cols="30" rows="10" class="form-control"></textarea>
+					</div>	
+					<input type="submit" class="btn btn-success btn-block" value="发布">														
+				</form>						
+			</div>
+		</div>
+	</div>	
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/app.js"></script>
+	<script>
+		$(function(){
+			$('.nav li').eq(1).addClass('on');
+		})
+	</script>	
+</body>
+</html>

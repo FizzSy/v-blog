@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-blog</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">  <!-- nodejs的目录都要这么写 不然模板渲染会出问题 -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<%- include('header') %>
+	<div class="container text-center blog_title">
+		<h1><a href="/" class="text-success">v-blog</a></h1>
+		<p>my first blog</p>
+			<% for(var i in users) { %>
+				<% var hours =users[i].time.getHours()<10?'0'+users[i].time.getHours():users[i].time.getHours(); %>
+				<% var minutes =users[i].time.getMinutes()<10?'0'+users[i].time.getMinutes():users[i].time.getMinutes(); %>
+				<% var seconds =users[i].time.getSeconds()<10?'0'+users[i].time.getSeconds():users[i].time.getSeconds(); %>	
+			<div class="row comment_box">
+				<div class="col-md-3 col-sm-2">
+					<div class="head text-right hidden-xs"><a href="/users/<%= users[i].author._id %>"><img src='/imgs/<%= users[i].author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= users[i].author.username %><%= users[i].author.sex %>" data-content="<%= users[i].author.resume %>"></a>
+					</div>
+				</div>
+				<div class="col-md-7 col-sm-9">	
+					<div class="comment">
+						<div class="visible-xs text-left"> 
+							<div class="head inline">
+								<a href="/users/<%= users[i].author._id %>"><img src='/imgs/<%= users[i].author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= users[i].author.username %><%= users[i].author.sex %>" data-content="<%= users[i].author.resume %>"></a>
+							</div>
+							<h3 class="inline ml15"><a href="/personal/<%= users[i]._id %>"><%= users[i].title %></a></h3>									
+						</div>
+						<h3 class="text-left hidden-xs"><a href="/personal/<%= users[i]._id %>"><%= users[i].title %></a></h3>
+						<p class="text-left"><%= users[i].context %></p>
+						<div class="info_box clearfix">
+							<span class="time"><%= users[i].time.getFullYear()+'-'+users[i].time.getMonth()+1+'-'+users[i].time.getDate()+' '+hours+':'+minutes+':'+seconds %></span>
+							<span class="info">
+								<i class="brose">浏览<span>(<%= users[i].browse %>)</span></i>
+								<i class="message">留言<span>(<%= users[i].message %>)</span></i>
+								<% if(locals.user._id == users[i].author._id){ %>
+									<div style="display: inline-block;position: relative;">
+									  <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block;">
+									  	<span class="caret"></span>
+									  </div>
+									  <ul class="dropdown-menu">
+									    <li><a href="/publish/edit/<%= users[i]._id %>">编辑</a></li>
+									    <li><a href="/publish/delmsg/<%= users[i]._id %>">删除</a></li>
+									  </ul>
+									</div>								
+								<% } %>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/app.js"></script>
+</body>
+</html>

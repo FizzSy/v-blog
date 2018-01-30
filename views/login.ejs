@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<%- include('header') %>
+	<div class="container text-center blog_title">
+		<h1><a href="/" class="text-success">v-blog</a></h1>
+		<p>my first blog</p>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<form action="/login/check" method="post" class="loginuser">
+					<div class="form-group has-success">
+						<label for="loginname">用户名</label>
+						<input type="text" class="form-control loginname" id="loginname" placeholder="用户名" name="loginname">
+					</div>	
+					<div class="form-group has-success">
+						<label for="loginpwd">密码</label>
+						<input type="password" class="form-control loginpwd" id="loginpwd" placeholder="密码" name="loginpwd">
+					</div>		
+					<p class="text-danger checkid"></p>
+					<input type="button" class="submit btn btn-success btn-block" value="登录">														
+				</form>				
+			</div>			
+		</div>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/app.js"></script>
+	<script>
+		$(function(){
+			$('.nav li').eq(0).addClass('on');
+		})
+	</script>	
+</body>
+</html>
