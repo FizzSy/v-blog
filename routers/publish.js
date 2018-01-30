@@ -45,7 +45,7 @@ router.post('/savenote',function(req,res){
 			note:req.body.note,
 			time:new Date(),
 			author:obj,
-			aid:req.body.aid
+			aid:req.body.aid  		//存放文章的id
 		});	
 		
 		msg.save(function(err){

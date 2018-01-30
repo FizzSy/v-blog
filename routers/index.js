@@ -19,7 +19,7 @@ router.get('/users/:uid',function(req,res){
 		req.session.user = '';
 	}	
 	res.locals.user = req.session.user;
-	var uid = req.params.uid;
+	var uid = req.params.uid;			//用户的id
 	articleSchema.find({'author._id':uid},function(err,data){
 		res.render('home',{home:data});
 	}).sort({_id:-1});	

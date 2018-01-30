@@ -8,12 +8,12 @@ router.get('/:pid',function(req,res){
 		req.session.user = '';
 	}	
 	res.locals.user = req.session.user;
-	var pid = req.params.pid;
+	var pid = req.params.pid;  				//文章的id
 	articleSchema.findById(pid,function(err,data1){
 		msgSchema.find({aid:pid},function(err,result){
 			articleSchema.findByIdAndUpdate(pid,{$set:{message:result.length,browse:data1.browse+1}},function(err,info){
 				articleSchema.findById(pid,function(err,data){
-					res.render('article',{msg:result,personal:data})
+					res.render('article',{msg:result,personal:data})  //msg是留言的数组,personal是个人文章的数据
 				})
 			})			
 		})
@@ -21,7 +21,7 @@ router.get('/:pid',function(req,res){
 })
 
 router.get('/delnote/:id',function(req,res){
-	var id = req.params.id;
+	var id = req.params.id;					//留言的id
 	msgSchema.findByIdAndRemove(id,function(err,data){
 		msgSchema.find({aid:data.aid},function(err,result){
 			articleSchema.findByIdAndUpdate(data.aid,{$set:{message:result.length}},function(err,info){

@@ -7,7 +7,7 @@ var crypto = require('crypto');
 router.post('/check',function(req,res){
 	var username = req.body.loginname;
 	var password = req.body.loginpwd;
-	var pwd = crypto.createHmac('sha256',password).update('I LOVE CUPCAKES').digest('hex');
+	var pwd = crypto.createHmac('sha256',password).update('I LOVE CUPCAKES').digest('hex'); //加密
 	userSchema.find({username:username,password:pwd},function(err,data){
 		if(data.length>0){
 			var _user={
