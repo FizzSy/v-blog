@@ -21,6 +21,9 @@ $(function(){
 		resume();
 		check();
 	})	
+	$('#resume').focus(function(){
+		console.log(1)
+	})		
 	$('#resume').blur(function(){
 		resume();	
 		check();
@@ -71,28 +74,7 @@ $(function(){
 		})
 	})		
 	$('.user_head').popover();
-	var app = new Vue({
-		el:'#app',
-		methods:{
-			submit(){
-				$.ajax({
-					type:'post',
-					url:'/login/check',
-					data:{
-						loginname:$('.loginname').val(),
-						loginpwd:$('.loginpwd').val()
-					},
-					success:function(data){
-						if(!data){
-							$('.checkid').stop().fadeIn().text('请输入正确的账号和密码！');
-						}else{
-							$('.loginuser').submit();
-						}
-					}
-				})
-			}
-		}
-	})	
+
 	function users(){
 		var user = $('#username').val();
 		var re = /^\w{6,20}$/g;

@@ -69,8 +69,8 @@
 						<form action="/publish/savenote" method="post" class="note_form text-left">
 							<input type="hidden" name="_id" value="<%= locals.user._id %>">
 							<input type="hidden" name="aid" value="<%= personal._id %>">
-							<div class="form-group has-success">
-								<textarea name="note" class="form-control" id="note"></textarea>
+							<div class="form-group has-success app">
+								<textarea name="note" class="form-control" id="note" v-model.trim='text'></textarea>
 								<p class="noteMsg text-danger"></p>
 							</div>
 							<input type="button" class="btn-success btn note_user" value='留言'>						
@@ -80,10 +80,17 @@
 			</div>
 		</div>
 	</div>
-
-
+	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/app.js"></script>
+	<script>
+		var app = new Vue({
+			el:'.app',
+			data:{
+				text:''
+			}
+		})			
+	</script>	
 </body>
 </html>

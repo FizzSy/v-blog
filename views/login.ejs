@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<form action="/login/check" method="post" class="loginuser" id='app'>
+				<form action="/login/check" method="post" class="loginuser app">
 					<div class="form-group has-success">
 						<label for="loginname">用户名</label>
 						<input type="text" class="form-control loginname" id="loginname" placeholder="用户名" name="loginname" @keyup.enter='submit'>
@@ -38,6 +38,28 @@
 		$(function(){
 			$('.nav li').eq(0).addClass('on');
 		})
+		var app = new Vue({
+			el:'.app',
+			methods:{
+				submit(){
+					$.ajax({
+						type:'post',
+						url:'/login/check',
+						data:{
+							loginname:$('.loginname').val(),
+							loginpwd:$('.loginpwd').val()
+						},
+						success:function(data){
+							if(!data){
+								$('.checkid').stop().fadeIn().text('请输入正确的账号和密码！');
+							}else{
+								$('.loginuser').submit();
+							}
+						}
+					})
+				}
+			}
+		})		
 	</script>	
 </body>
 </html>
