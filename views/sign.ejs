@@ -14,7 +14,7 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+			<div class="col-md-6 col-md-offset-3">
 				<form action="/sign/save_info" method="post" enctype="multipart/form-data">
 					<div class="form-group has-success">
 						<label for="username">用户名</label>
@@ -43,7 +43,7 @@
 						<label for="file">头像</label>
 						<div>
 					        <a href="javascript:;" class="upload">上传头像
-							    <input class="change" type="file" id="file" name="file" multiple="multiple" />
+							    <input class="change" type="file" id="file" name="file" required="required" />
 							</a>						
 						</div>
 
@@ -53,7 +53,7 @@
 						<textarea name="resume" id="resume" cols="30" rows="10" class="form-control" v-model.trim='text'></textarea>
 						<p class="text-danger resume"></p>	
 					</div>	
-					<input type="buttom" class="btn btn-success btn-block disabled sign" value="注册">	
+					<input type="button" class="btn btn-success btn-block disabled sign" value="注册">	
 				</form>				
 			</div>			
 		</div>

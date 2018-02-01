@@ -74,7 +74,6 @@ $(function(){
 		})
 	})		
 	$('.user_head').popover();
-
 	function users(){
 		var user = $('#username').val();
 		var re = /^\w{6,20}$/g;

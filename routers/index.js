@@ -5,6 +5,7 @@ var userSchema = require('../mongodb/users.js');
 var msgSchema = require('../mongodb/msg.js'); 
 
 router.get('/',function(req,res){
+	res.header('Access-Control-Allow-Origin','*');
 	if(!req.session.user){
 		req.session.user = '';
 	}
@@ -12,6 +13,17 @@ router.get('/',function(req,res){
 	articleSchema.find({},function(err,data){
 		res.render('blog',{users:data});
 	}).sort({_id:-1});
+})
+
+router.post('/index',function(req,res){
+	res.header('Access-Control-Allow-Origin','*');
+	if(!req.session.user){
+		req.session.user = '';
+	}
+	res.locals.user = req.session.user;  //将用户登录的数据传进来
+	articleSchema.find({},function(err,data){
+		res.json({users:data});
+	});
 })
 
 router.get('/users/:uid',function(req,res){
