@@ -8,6 +8,10 @@
 </head>
 <body>
 	<%- include('header') %>
+	<% var hour =personal.time.getHours()<10?'0'+personal.time.getHours():personal.time.getHours(); %>
+	<% var minute =personal.time.getMinutes()<10?'0'+personal.time.getMinutes():personal.time.getMinutes(); %>
+	<% var second ='0'+personal.time.getSeconds() %>	
+	<% second = second.slice(-2) %>	
 	<div class="container text-center blog_title">
 		<h1><a href="/" class="text-success">v-blog</a></h1>
 		<p>my first blog</p>
@@ -22,15 +26,15 @@
 						<div class="head inline">
 							<a href="/users/<%= personal.author._id %>"><img src='/imgs/<%= personal.author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= personal.author.username %><%= personal.author.sex %>" data-content="<%= personal.author.resume %>"></a>
 						</div>
-						<h3 class="inline ml15"><a href="/personal/<%= personal._id %>"><%= personal.title %></a></h3>									
+						<h3 class="inline ml15 c_title"><a href="/personal/<%= personal._id %>"><%= personal.title %></a></h3>									
 					</div>
-					<h3 class="text-left hidden-xs"><a href="/personal/<%= personal._id %>"><%= personal.title %></a></h3>
-					<p class="text-left"><%= personal.context %></p>
+					<h3 class="text-left hidden-xs c_title"><a href="/personal/<%= personal._id %>"><%= personal.title %></a></h3>
+					<p class="text-left c_context"><%= personal.context %></p>
 					<div class="info_box clearfix">
-						<span class="time"><%= personal.time.getFullYear()+'-'+personal.time.getMonth()+1+'-'+personal.time.getDate()+' '+personal.time.getHours()+':'+personal.time.getMinutes()+':'+personal.time.getSeconds() %></span>
+						<span class="time"><%= personal.time.getFullYear()+'年 '+(personal.time.getMonth()+1)+'月'+personal.time.getDate()+'日  '+hour+':'+minute+':'+second %></span>
 						<span class="info">
 							<i class="brose">浏览<span>(<%= personal.browse %>)</span></i>
-							<i class="message" value='<%= personal.message %>'>留言<span>(<%= personal.message %>)</span></i>
+							<i class="message" data-value='<%= personal.message %>'>留言<span>(<%= personal.message %>)</span></i>
 							<% if(locals.user._id == personal.author._id){ %>
 							<div style="display: inline-block;position: relative;">
 								  <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display: inline-block;">
@@ -56,7 +60,7 @@
 							<div class="userInfo">
 								<div class="text-left">
 									<h5><a href='/users/<%= msg[i].author._id %>'><%= msg[i].author.username %></a></h5>
-									<span class="time"><%= msg[i].time.getFullYear()+'-'+msg[i].time.getMonth()+1+'-'+msg[i].time.getDate()+' '+hours+':'+minutes+':'+seconds %></span>
+									<span class="time"><%= msg[i].time.getFullYear()+'年 '+(msg[i].time.getMonth()+1)+'月'+msg[i].time.getDate()+'日 '+hours+':'+minutes+':'+seconds %></span>
 									<% if(locals.user._id == msg[i].author._id){ %>
 										<a href="javascript:;" data-id='<%= msg[i]._id %>'  class="del pull-right">删除</a>
 									<% } %>
@@ -80,6 +84,7 @@
 			</div>
 		</div>
 	</div>
+	<div class="top"></div>
 	<script src="/js/vue.js"></script>
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

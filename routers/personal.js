@@ -3,7 +3,7 @@ var router = exp.Router();
 var articleSchema = require('../mongodb/articles.js');
 var msgSchema = require('../mongodb/msg.js'); 
 
-router.get('/:pid',function(req,res){
+router.get('/:pid',function(req,res){		//渲染个人文章页
 	if(!req.session.user){
 		req.session.user = '';
 	}	
@@ -20,8 +20,8 @@ router.get('/:pid',function(req,res){
 	}).sort({_id:-1});	
 })
 
-router.get('/delnote/:id',function(req,res){
-	var id = req.params.id;					//留言的id
+router.get('/delnote/:id',function(req,res){		//删除留言
+	var id = req.params.id;					
 	msgSchema.findByIdAndRemove(id,function(err,data){
 		msgSchema.find({aid:data.aid},function(err,result){
 			articleSchema.findByIdAndUpdate(data.aid,{$set:{message:result.length}},function(err,info){

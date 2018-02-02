@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>v-blog</title>
+  <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>  
   <link rel="stylesheet" href="/css/bootstrap.css">  <!-- nodejs的目录都要这么写 不然模板渲染会出问题 -->
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -23,15 +24,15 @@
 				<div class="col-md-7 col-sm-9">	
 					<div class="comment">
 						<div class="visible-xs text-left"> 
-							<div class="head inline">
+							<div class="head inline mr15">
 								<a href="/users/<%= users[i].author._id %>"><img src='/imgs/<%= users[i].author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= users[i].author.username %><%= users[i].author.sex %>" data-content="<%= users[i].author.resume %>"></a>
 							</div>
-							<h3 class="inline ml15"><a href="/personal/<%= users[i]._id %>"><%= users[i].title %></a></h3>									
+							<h3 class="inline c-title"><a href="/personal/<%= users[i]._id %>"><%= users[i].title %></a></h3>									
 						</div>
-						<h3 class="text-left hidden-xs"><a href="/personal/<%= users[i]._id %>"><%= users[i].title %></a></h3>
-						<p class="text-left"><%= users[i].context %></p>
+						<h3 class="text-left hidden-xs c-title"><a href="/personal/<%= users[i]._id %>"><%= users[i].title %></a></h3>
+						<div class="text-left c-context"><%= users[i].context %></div>
 						<div class="info_box clearfix">
-							<span class="time"><%= users[i].time.getFullYear()+'-'+users[i].time.getMonth()+1+'-'+users[i].time.getDate()+' '+hours+':'+minutes+':'+seconds %></span>
+							<span class="time"><%= users[i].time.getFullYear()+'年 '+(users[i].time.getMonth()+1)+'月'+users[i].time.getDate()+'日 '+hours+':'+minutes+':'+seconds %></span>
 							<span class="info">
 								<i class="brose">浏览<span>(<%= users[i].browse %>)</span></i>
 								<i class="message">留言<span>(<%= users[i].message %>)</span></i>
@@ -53,6 +54,8 @@
 			</div>
 		<% } %>
 	</div>
+	<div class="top"></div>
+	<canvas id="canvas"></canvas>
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/app.js"></script>

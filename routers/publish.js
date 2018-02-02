@@ -33,7 +33,7 @@ router.post('/save',function(req,res){
 	})
 })
 
-router.post('/savenote',function(req,res){
+router.post('/savenote',function(req,res){		//发布留言
 	userSchema.findById(req.body._id,function(err,data){ //只找到唯一的id，不是数组
 		var obj = {
 			_id:data._id+'',
@@ -57,7 +57,7 @@ router.post('/savenote',function(req,res){
 	})
 })
 
-router.get('/edit/:id',function(req,res){
+router.get('/edit/:id',function(req,res){			//判断编辑用户的文章
 	if(!req.session.user){
 		req.session.user = '';
 	}	
@@ -68,7 +68,7 @@ router.get('/edit/:id',function(req,res){
 	})
 })
 
-router.post('/edit_save/',function(req,res){
+router.post('/edit_save/',function(req,res){		//保存编辑并更新文章
 	var id = req.body._id;
 	var title = req.body.title;
 	var context = req.body.context;
@@ -77,17 +77,10 @@ router.post('/edit_save/',function(req,res){
 	})
 })
 
-router.get('/delmsg/:id',function(req,res){
+router.get('/delmsg/:id',function(req,res){			//删除文章
 	var id = req.params.id;
 	articleSchema.findByIdAndRemove(id,function(err,data){
-		res.redirect('/');
-	})
-})
-
-router.get('/delnote/:id',function(req,res){
-	var id = req.params.id;
-	msgSchema.findByIdAndRemove(id,function(err,data){
-		res.redirect('/personal/'+data.aid);
+		res.redirect('/');				
 	})
 })
 

@@ -32,7 +32,10 @@
       </div>
         <div class="collapse navbar-collapse" id="nav_in">
            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/users/<%= locals.user._id %>" class="home"><%= locals.user.username %></a></li>
+              <li>
+                <img src="/imgs/<%= locals.user.headicon %>" class="hidden-xs nav_img">
+                <a href="/users/<%= locals.user._id %>" class="home"><%= locals.user.username %></a>
+              </li>
               <li><a href="/publish">发表文章</a></li>
               <li><a href="/loginOut">登出</a></li>
            </ul>

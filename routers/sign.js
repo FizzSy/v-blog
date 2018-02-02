@@ -4,12 +4,12 @@ var router = exp.Router();
 var multer = require('multer');
 var crypto = require('crypto');
 
-var storage = multer.diskStorage({
+var storage = multer.diskStorage({ 			//上传头像
 	destination:function(req,file,cb){
-		cb(null,'public/imgs') 			
+		cb(null,'public/imgs') 				//将上传图片存入的目标文件夹
 	},
 	filename:function(req,file,cb){
-		var fileFormat = (file.originalname).split('.');
+		var fileFormat = (file.originalname).split('.');		//由于存入后文件名是绝对路径 故需要修改文件名 取最后一位
 		cb(null,Date.now()+'.'+fileFormat[fileFormat.length-1]);
 	}
 })
@@ -28,7 +28,7 @@ router.post('/save_info',upload.single('file'),function(req,res){
 	headicon:req.file.filename,
 	resume:req.body.resume
 	});
-	user.save(function(err,data){
+	user.save(function(err,data){			//将用户信息存入mongodb数据库
 		if(err){
 			return res.send('注册失败...');
 		}

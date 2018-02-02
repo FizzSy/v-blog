@@ -24,6 +24,9 @@ input[type='submit']:active {
   height: 12px;
   margin-top: 3px;
 }
+.col-md-7 {
+  background: white;
+}
 textarea {
   resize: none;
 }
@@ -47,6 +50,9 @@ textarea {
 }
 .blog_title p {
   color: #999999;
+}
+.container {
+  padding-top: 55px;
 }
 .btn {
   border: none;
@@ -79,6 +85,42 @@ textarea {
   border-radius: 0;
   border: 0;
 }
+nav {
+  position: fixed !important;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+nav li a {
+  position: relative;
+  transition: all 1s linear;
+}
+nav li a:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  height: 2px;
+  transform: translateX(-50%);
+  background: #4fc08d;
+  transition: all .25s linear;
+  width: 0;
+}
+nav li a:hover:after {
+  width: 100%;
+}
+.nav_img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.mr15 {
+  margin-right: 15px;
+}
+.nav > li > a {
+  display: inline-block;
+}
 .inline {
   display: inline-block;
 }
@@ -95,9 +137,30 @@ textarea {
   margin-top: 45px;
 }
 .comment_box .head img {
+  margin-bottom: 10px;
   width: 48px;
   height: 48px;
   border-radius: 3px;
+}
+.comment_box .c-title {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.comment_box .c-context {
+  margin: 10px 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #999999;
 }
 .comment_box .comment {
   border-radius: .28571429rem;
@@ -108,16 +171,15 @@ textarea {
 .comment_box .comment a {
   color: #4fc08d;
 }
-.comment_box .comment h3 {
-  white-space: normal;
-  word-break: break-all;
+.c_title {
+  white-space: pre-wrap;
   word-wrap: break-word;
 }
-.comment_box .comment p {
-  white-space: normal;
-  word-break: break-all;
+.c_context {
+  margin: 10px 0;
+  white-space: pre-wrap;
   word-wrap: break-word;
-  margin: 10px 0 20px 0;
+  color: #999999;
 }
 .comment h3 {
   margin: 0;
@@ -184,8 +246,16 @@ textarea {
   color: #999999;
 }
 .user .userInfo .del {
+  background: white;
   color: red;
-  display: none;
+  border-radius: 3px;
+  padding: 1px 3px;
+  text-decoration: none;
+  transition: all .1s linear;
+}
+.user .userInfo .del:hover {
+  background: red;
+  color: white;
 }
 .user .userInfo h5 {
   font-size: 16px;
@@ -223,10 +293,28 @@ textarea {
   opacity: 0;
 }
 .on {
+  box-sizing: border-box;
   border-bottom: 2px solid #4fc08d;
 }
 .form-group .text-danger {
   margin: 10px 0;
+}
+.top {
+  position: fixed;
+  bottom: 10px;
+  left: 93.8%;
+  z-index: 999;
+  width: 72px;
+  height: 72px;
+  cursor: pointer;
+  display: none;
+  border-radius: 5px;
+}
+.top {
+  background: url(../imgs/return_top.png);
+}
+.top:hover {
+  background: url(../imgs/return_top_two.png);
 }
 @media (max-width: 768px) {
   .mt-xs-5 {
