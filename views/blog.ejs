@@ -10,8 +10,7 @@
 <body>
 	<%- include('header') %>
 	<div class="container text-center blog_title">
-		<h1><a href="/" class="text-success">v-blog</a></h1>
-		<p>my first blog</p>
+		<h1><a href="/index/1" class="text-success">v-blog</a></h1>
 			<% for(var i in users) { %>
 				<% var hours =users[i].time.getHours()<10?'0'+users[i].time.getHours():users[i].time.getHours(); %>
 				<% var minutes =users[i].time.getMinutes()<10?'0'+users[i].time.getMinutes():users[i].time.getMinutes(); %>
@@ -52,12 +51,52 @@
 					</div>
 				</div>
 			</div>
+
 		<% } %>
 	</div>
+	<% if(pages){ %>
+		<div aria-label="Page navigation" class="page">
+		  <ul class="pagination">
+		    <li>
+		      <a href='/index/<%= index-1 %>' class='left' aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    <% for(var i=0;i<pages;i++) { %>
+		    	<li><a href='/index/<%= i+1 %>' class="page-btn"><%= i+1 %></a></li>
+		    <% } %>
+		    <li>
+		      <a href='/index/<%= Number(index)+1 %>' class='right' aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</div>
+		<input type="hidden" value='<%= pages %>' class="pages">
+		<input type="hidden" value='<%= index %>' class="currentpage">
+	<% } %>
 	<div class="top"></div>
-	<canvas id="canvas"></canvas>
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/app.js"></script>
+	<script>
+		$(function(){
+			var pages = $('.pages').val();
+			var currentpage = $('.currentpage').val();
+			if(currentpage == 1){
+				$('.left').addClass('disabled');
+				$('.left').click(function(event){
+					event.preventDefault();
+				})
+			}else if(currentpage == pages){
+				$('.right').addClass('disabled');
+				$('.right').click(function(event){
+					event.preventDefault();
+				})				
+			}
+			$('.page-btn').eq(currentpage-1).addClass('page-active')
+			console.log('总页数:'+pages+'当前页数:'+currentpage)
+		})
+	</script>
 </body>
 </html>

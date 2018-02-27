@@ -13,8 +13,7 @@
 	<% var second ='0'+personal.time.getSeconds() %>	
 	<% second = second.slice(-2) %>	
 	<div class="container text-center blog_title">
-		<h1><a href="/" class="text-success">v-blog</a></h1>
-		<p>my first blog</p>
+		<h1><a href="/index/1" class="text-success">v-blog</a></h1>
 		<div class="row comment_box">
 			<div class="col-md-3 col-sm-2">
 				<div class="head text-right hidden-xs"><a href="/users/<%= personal.author._id %>"><img src='/imgs/<%= personal.author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= personal.author.username %><%= personal.author.sex %>" data-content="<%= personal.author.resume %>"></a>
@@ -89,13 +88,7 @@
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/app.js"></script>
-	<script>
-		var app = new Vue({
-			el:'.app',
-			data:{
-				text:''
-			}
-		})			
+	<script>		
 	</script>	
 </body>
 </html>

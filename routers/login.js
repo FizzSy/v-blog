@@ -19,7 +19,7 @@ router.post('/check',function(req,res){
 			}
 			req.session.user = _user;  			//获取登录的数据
 			res.locals.user = req.session.user;
-			res.redirect('/');
+			res.redirect('/index/1');
 			console.log(pwd);	//加密后的密码 请求两次是ajax也请求了一次
 		}else{
 			res.send(false);

@@ -93,7 +93,7 @@ $(function(){
 	});		
 	$(window).scroll(function(){
 		var _top=$(window).scrollTop();
-		if(_top>200){
+		if(_top>100){
 			$('.top').slideDown();
 		}else{
 			$('.top').slideUp();

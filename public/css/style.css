@@ -85,6 +85,36 @@ textarea {
   border-radius: 0;
   border: 0;
 }
+.page{
+  margin-top:50px;
+  text-align: center;
+}
+.page ul{
+  display: inline-block;
+}
+.page-active{
+  background: #4fc08d!important;
+  color: white!important;
+  border:0;
+}
+.pagination li a{
+  padding: 10px 22px;
+  color:#4fc08d;
+  border:1px solid #4fc08d!important;
+}
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus{
+  background: #fff;
+  color:#4fc08d;
+}
+.pagination > li{
+  margin:5px;
+  display: inline-block;
+}
+.disabled{
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 nav {
   position: fixed !important;
   width: 100%;
@@ -319,5 +349,15 @@ nav li a:hover:after {
 @media (max-width: 768px) {
   .mt-xs-5 {
     margin-top: 5px;
+  }
+}
+@media (max-width: 1170px) {
+  .top{
+    left:90%;
+  }
+}
+@media (max-width: 970px) {
+  .top{
+    display: none!important;
   }
 }

@@ -12,7 +12,8 @@ router.post('/save',function(req,res){
 			username: data.username,
 			sex: data.sex,
 			headicon:data.headicon,
-			resume: data.resume
+			resume: data.resume,
+			num:2
 		}
 
 		var acticle = new articleSchema({
@@ -21,7 +22,8 @@ router.post('/save',function(req,res){
 			time:new Date(),
 			author:obj,
 			browse:0,
-			message:0
+			message:0,
+			rank:1
 		});	
 		
 		acticle.save(function(err,result){
@@ -80,8 +82,16 @@ router.post('/edit_save/',function(req,res){		//保存编辑并更新文章
 router.get('/delmsg/:id',function(req,res){			//删除文章
 	var id = req.params.id;
 	articleSchema.findByIdAndRemove(id,function(err,data){
-		res.redirect('/');				
+		res.redirect('/index/1');				
 	})
+})
+
+router.get('/topmsg/:id',function(req,res){			//顶置文章
+	var id = req.params.id;
+	articleSchema.find({_id:id},function(err,data){		
+		console.log(data+'........');
+		res.redirect('/users/'+data[0].author._id+'*'+id);		
+	})	
 })
 
 router.get('/',checknotlogin,function(req,res){

@@ -3,7 +3,7 @@ module.exports = {
 		if(!req.session.user){  	//未登录状态
 			return res.render('login');  //中间件的函数需要加上 return 不然影响接下来的回调函数
 		}else{
-			return res.redirect('/');
+			return res.redirect('/index/1');
 		}
 		next(); //把权限交给下一个		
 	},

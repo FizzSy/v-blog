@@ -31,4 +31,6 @@ router.get('/delnote/:id',function(req,res){		//删除留言
 	})
 })	
 
+
+
 module.exports = router;

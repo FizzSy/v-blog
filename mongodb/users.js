@@ -5,7 +5,8 @@ var userSchema = mongoose.Schema({
 	password:String,
 	sex:String,
 	headicon:String,
-	resume:String
+	resume:String,
+	num:Number
 },{collection:'users'});
 
 module.exports = mongoose.model('users',userSchema);

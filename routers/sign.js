@@ -41,7 +41,7 @@ router.post('/save_info',upload.single('file'),function(req,res){
 		}
 		req.session.user = _user;  			//获取登录的数据
 		res.locals.user = req.session.user;
-		res.redirect('/');
+		res.redirect('/index/1');
 	})	
 })
 
