@@ -86,14 +86,6 @@ router.get('/delmsg/:id',function(req,res){			//删除文章
 	})
 })
 
-router.get('/topmsg/:id',function(req,res){			//顶置文章
-	var id = req.params.id;
-	articleSchema.find({_id:id},function(err,data){		
-		console.log(data+'........');
-		res.redirect('/users/'+data[0].author._id+'*'+id);		
-	})	
-})
-
 router.get('/',checknotlogin,function(req,res){
 	res.render('publish');
 })

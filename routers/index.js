@@ -3,6 +3,11 @@ var router = exp.Router();
 var articleSchema = require('../mongodb/articles.js');	//数据库
 var userSchema = require('../mongodb/users.js');
 var msgSchema = require('../mongodb/msg.js'); 
+var path = require('path');
+
+router.get('',function(req,res){
+	res.redirect('/index/1');
+})
 
 router.get('/index/:index',function(req,res){				//渲染博客主页
 	res.header('Access-Control-Allow-Origin','*'); //跨域请求
@@ -17,6 +22,12 @@ router.get('/index/:index',function(req,res){				//渲染博客主页
 			res.render('blog',{users:data,pages:pages,index:index});
 		}).sort({_id:-1}).skip(6*(index-1)).limit(6);
 	});
+})
+
+router.get('/json',function(req,res){
+	res.header('Access-Control-Allow-Origin','*');
+	console.log(__dirname)
+	res.sendFile(path.join(__dirname,'../public/data.json'));
 })
 
 router.get('/users/:uid',function(req,res){		//渲染个人用户页面
@@ -47,7 +58,7 @@ router.get('/users/:uid',function(req,res){		//渲染个人用户页面
 
 router.get('/loginOut',function(req,res){		//登出
 	req.session.user = null;
-	res.redirect('/index/:index');
+	res.redirect('/index/1');
 })	
 
 router.use('/sign',require('./sign.js'));		//路由
