@@ -346,6 +346,21 @@ nav li a:hover:after {
 .top:hover {
   background: url(../imgs/return_top_two.png);
 }
+.dropdown-menu{
+  min-width: 85px;
+}
+.dropdown-menu > li{
+  text-align: center;
+}
+.topmsg{
+  border: 1px solid #4fc08d!important;
+}
+.dropdown-menu > li > a{
+  padding: 3px 0;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
 @media (max-width: 768px) {
   .mt-xs-5 {
     margin-top: 5px;

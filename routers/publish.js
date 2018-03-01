@@ -13,7 +13,6 @@ router.post('/save',function(req,res){
 			sex: data.sex,
 			headicon:data.headicon,
 			resume: data.resume,
-			num:2
 		}
 
 		var acticle = new articleSchema({
@@ -23,7 +22,7 @@ router.post('/save',function(req,res){
 			author:obj,
 			browse:0,
 			message:0,
-			rank:1
+			newtime:0
 		});	
 		
 		acticle.save(function(err,result){
@@ -83,6 +82,14 @@ router.get('/delmsg/:id',function(req,res){			//删除文章
 	var id = req.params.id;
 	articleSchema.findByIdAndRemove(id,function(err,data){
 		res.redirect('/index/1');				
+	})
+})
+
+router.get('/topmsg/:id',function(req,res){		//置顶文章
+	var id = req.params.id;
+	var time = new Date();
+	articleSchema.findByIdAndUpdate(id,{$set:{newtime:time}},function(err,data){
+		res.redirect('/users/'+data.author._id);
 	})
 })
 

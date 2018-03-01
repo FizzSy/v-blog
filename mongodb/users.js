@@ -6,7 +6,6 @@ var userSchema = mongoose.Schema({
 	sex:String,
 	headicon:String,
 	resume:String,
-	num:Number
 },{collection:'users'});
 
 module.exports = mongoose.model('users',userSchema);

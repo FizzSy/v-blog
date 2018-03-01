@@ -7,7 +7,7 @@ var userSchema = mongoose.Schema({
 	author:Object,
 	browse:Number,
 	message:Number,
-	rank:Number,
+	newtime:Date
 },{collection:'articles'});
 
 module.exports = mongoose.model('articles',userSchema);

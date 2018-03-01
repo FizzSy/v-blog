@@ -14,7 +14,7 @@
 			<% for(var i in home) { %>
 				<% var hours =home[i].time.getHours()<10?'0'+home[i].time.getHours():home[i].time.getHours(); %>
 				<% var minutes =home[i].time.getMinutes()<10?'0'+home[i].time.getMinutes():home[i].time.getMinutes(); %>
-				<% var seconds =home[i].time.getSeconds()<10?'0'+home[i].time.getSeconds():home[i].time.getSeconds(); %>				
+				<% var seconds =home[i].time.getSeconds()<10?'0'+home[i].time.getSeconds():home[i].time.getSeconds(); %>		
 			<div class="row comment_box">
 				<div class="col-md-3 col-sm-2">
 					<div class="head text-right hidden-xs"><a href="/users/<%= home[i].author._id %>"><img src='/imgs/<%= home[i].author.headicon %>' tabindex="0" data-placement="bottom" class='user_head' role="button" data-toggle="popover" data-trigger="hover" title="<%= home[i].author.username %><%= home[i].author.sex %>" data-content="<%= home[i].author.resume %>"></a>
@@ -43,7 +43,7 @@
 									  <ul class="dropdown-menu">
 									    <li><a href="/publish/edit/<%= home[i]._id %>">编辑</a></li>
 									    <li><a href="/publish/delmsg/<%= home[i]._id %>">删除</a></li>
-									    <li><a href="/publish/topmsg/<%= home[i]._id %>"></a></li>
+									    <li class="top_msg"><a href="/publish/topmsg/<%= home[i]._id %>">顶置文章</a></li>
 									  </ul>
 									</div>								
 								<% } %>
