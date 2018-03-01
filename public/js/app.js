@@ -100,9 +100,6 @@ $(function(){
 		}
 	});	
 	$('.user_head').popover();
-	$('.top_msg a').click(function(){
-		$(this).parents('.comment').addClass('topmsg');
-	})
 	function users(){
 		var user = $('#username').val();
 		var re = /^\w{6,20}$/g;
